@@ -1,4 +1,13 @@
 export default {
+  // server: {
+  //   port: process.env.PORT || 3000,
+  //   host: "0.0.0.0",
+  //   timing: false
+  // },
+  // publicRuntimeConfig: {
+  //   baseURL: process.env.BASE_URL
+  // },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Kumon-frontend",
@@ -30,12 +39,13 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/axios",
-    "@nuxtjs/auth"
+    "@nuxtjs/auth",
+    "@nuxtjs/dotenv"
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: "http://localhost:3001/apis",
+    baseURL: process.env.BASE_URL,
     progress: false
   },
 

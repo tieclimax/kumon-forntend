@@ -1,0 +1,25 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        docker pull gcr.io/kumon-thailand/kumon-thailand:latest || exit 0
+  - name: gcr.io/cloud-builders/docker
+    timeout: 1200s
+    args:
+      [
+        "build",
+        "-f",
+        "Dockerfile",
+        "-t",
+        "gcr.io/kumon-thailand/kumon-thailand",
+        "--cache-from",
+        "gcr.io/kumon-thailand/kumon-thailand:latest",
+        ".",
+      ]
+timeout: 1200s
+images:
+  - gcr.io/kumon-thailand/kumon-thailand
+  # gcloud builds submit --project "kumon-thailand" --config=./cloud-build.yml
+# gcloud beta run deploy kumon-thailand --region asia-northeast1 --project "kumon-thailand" --image gcr.io/kumon-thailand/kumon-thailand --platform managed
